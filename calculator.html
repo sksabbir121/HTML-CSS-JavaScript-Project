@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .calculator {
+      max-width: 400px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+  
+<div class="container calculator">
+  <h2 class="text-center">Calculator</h2>
+  <form id="calculatorForm">
+    <div class="form-group">
+      <label for="num1">Number 1:</label>
+      <input type="number" class="form-control" id="num1" required>
+    </div>
+    <div class="form-group">
+      <label for="num2">Number 2:</label>
+      <input type="number" class="form-control" id="num2" required>
+    </div>
+    <div class="form-group">
+      <label for="operation">Operation:</label>
+      <select class="form-control" id="operation">
+        <option value="add">Addition (+)</option>
+        <option value="subtract">Subtraction (-)</option>
+        <option value="multiply">Multiplication (*)</option>
+        <option value="divide">Division (/)</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+  </form>
+  <div id="result" class="mt-3"></div>
+</div>
+
+
+<script>
+  function calculateResult() {
+    event.preventDefault();
+    var num1 = parseFloat(document.getElementById("num1").value);
+    var num2 = parseFloat(document.getElementById("num2").value);
+    var operation = document.getElementById("operation").value;
+    var result;
+
+    switch (operation) {
+      case "add":
+        result = num1 + num2;
+        break;
+      case "subtract":
+        result = num1 - num2;
+        break;
+      case "multiply":
+        result = num1 * num2;
+        break;
+      case "divide":
+        if (num2 !== 0) {
+          result = num1 / num2;
+        } else {
+          result = "Cannot divide by zero!";
+        }
+        break;
+      default:
+        result = "Invalid operation";
+    }
+
+    document.getElementById("result").innerHTML = "Result: " + result;
+  }
+  document.getElementById("calculatorForm").addEventListener("submit", calculateResult);
+</script>
+
+</body>
+</html>
